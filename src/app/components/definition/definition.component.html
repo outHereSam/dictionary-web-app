@@ -4,7 +4,7 @@
       <h1 class="word">{{ currentDefinition[0]?.word }}</h1>
       <p class="phoenetic">{{ currentDefinition[0]?.phonetic }}</p>
     </div>
-    <button class="play">
+    <button class="play" (click)="playAudio()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="75"

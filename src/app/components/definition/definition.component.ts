@@ -15,6 +15,7 @@ export class DefinitionComponent {
 
   currentWord = 'keyboard';
   currentDefinition: Definition[] = [];
+  phonetics: string[] = [];
 
   ngOnInit() {
     this.getCurrentWordDefinition();
@@ -23,8 +24,20 @@ export class DefinitionComponent {
   getCurrentWordDefinition() {
     this.dataService
       .fetchData(this.currentWord)
-      .subscribe(
-        (definition: Definition[]) => (this.currentDefinition = definition)
-      );
+      .subscribe((definition: Definition[]) => {
+        this.currentDefinition = definition;
+        this.currentDefinition[0].phonetics.forEach((phonetic) =>
+          this.phonetics.push(phonetic.audio)
+        );
+      });
+  }
+
+  playAudio() {
+    if (this.phonetics.length > 0) {
+      this.phonetics.forEach((sound) => {
+        let audio = new Audio(sound);
+        audio.play();
+      });
+    }
   }
 }
