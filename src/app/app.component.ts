@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FontService } from './services/font.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,20 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
   styleUrl: './app.component.sass',
 })
 export class AppComponent {
+  fontService = inject(FontService);
   title = 'dictionary-web-app';
-  fontFamily = 'Sans Serif';
+  fontFamily = this.fontService.currentFont;
+
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.fontFamily = this.fontService.currentFont;
+  }
+
+  ngDoCheck() {
+    if (this.fontFamily !== this.fontService.currentFont) {
+      this.fontFamily = this.fontService.currentFont;
+      this.cd.detectChanges();
+    }
+  }
 }

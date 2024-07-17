@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FontService } from '../../services/font.service';
 
 @Component({
   selector: 'app-font-switcher',
@@ -8,8 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './font-switcher.component.sass',
 })
 export class FontSwitcherComponent {
-  fonts: string[] = ['Sans Serif', 'Serif', 'Mono'];
-  currentFont = this.fonts[0];
+  fontService = inject(FontService);
   isOpened = false;
 
   toggleSwitcher() {
@@ -17,6 +17,7 @@ export class FontSwitcherComponent {
   }
 
   changeFont(event: any) {
-    this.currentFont = event.target.innerText;
+    this.fontService.changeFont(event.target.innerText);
+    this.isOpened = false;
   }
 }

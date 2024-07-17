@@ -1,6 +1,9 @@
 <div class="font-switcer">
-  <button (click)="toggleSwitcher()" [attr.font-family]="currentFont">
-    {{ currentFont }}
+  <button
+    (click)="toggleSwitcher()"
+    [attr.font-family]="fontService.currentFont"
+  >
+    {{ fontService.currentFont }}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="14"
@@ -12,7 +15,7 @@
   </button>
   <div class="font-options" [style]="{ display: isOpened ? 'block' : 'none' }">
     <ul>
-      @for(font of fonts; track font) {
+      @for(font of fontService.fonts; track font) {
       <li (click)="changeFont($event)">{{ font }}</li>
       }
     </ul>
