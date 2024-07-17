@@ -1,0 +1,56 @@
+@import '../../../styles'
+
+.font-switcer
+    color: $text-grey
+
+    button
+        appearance: none
+        -webkit-appearance: none
+        border: none
+        background: none
+        cursor: pointer
+        font-size: 14px
+        display: flex
+        align-items: center
+        gap: 16px
+        font-weight: bold
+
+        &[font-family="Sans Serif"]
+            font-family: $sans-serif-stack
+        
+        &[font-family="Serif"]
+            font-family: $serif-stack
+        
+        &[font-family="Mono"]
+            font-family: $monospace-stack
+
+    .font-options
+        position: absolute
+        top: 70px
+        right: 70px
+        padding: 24px
+        border-radius: 16px
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.10)
+
+        li
+            list-style-type: none
+            font-weight: bold
+            font-size: 14px
+            cursor: pointer
+            width: 100%
+            margin: 0 0 16px 0
+
+            &:nth-child(1)
+                font-family: $sans-serif-stack
+
+            &:nth-child(2)
+                font-family: $serif-stack
+
+            &:nth-child(3)
+                font-family: $monospace-stack
+
+            &:last-of-type
+                margin: 0
+
+            &:hover
+                color: $purple-accent
