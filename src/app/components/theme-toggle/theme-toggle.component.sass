@@ -1,0 +1,51 @@
+@import '../../../styles'
+
+.theme-toggle
+    display: flex
+    align-items: center
+    gap: 12px
+
+    .switch
+        position: relative
+        display: inline-block
+        width:  40px
+        height: 20px
+
+        .slider 
+            position: absolute
+            cursor: pointer
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background-color: $text-secondary
+            border-radius: 10px
+
+            &::before
+                position: absolute
+                content: ""
+                height: 14px
+                width: 14px
+                left: 3px
+                bottom: 3px
+                background-color: $text-white
+                border-radius: 50%
+                transition: 300ms ease-in-out
+
+        input
+            display: none
+
+            &:checked + .slider
+                background-color: $purple-accent
+
+            &:checked + .slider::before
+                transform: translateX(20px)
+
+    svg 
+        height: 20px
+
+            
+
+    
+
+        
