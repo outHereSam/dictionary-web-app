@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import Definition from '../../interfaces/definition-interface';
 import { HttpClient } from '@angular/common/http';
@@ -11,33 +11,47 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './definition.component.sass',
 })
 export class DefinitionComponent {
-  constructor(private dataService: DataService, private http: HttpClient) {}
+  constructor(
+    private dataService: DataService,
+    private cd: ChangeDetectorRef
+  ) {}
 
-  currentWord = 'keyboard';
+  currentWord = '';
   currentDefinition: Definition[] = [];
   phonetics: string[] = [];
 
   ngOnInit() {
     this.getCurrentWordDefinition();
+    this.currentWord = this.dataService.currentWord;
+  }
+
+  ngDoCheck() {
+    if (this.currentWord !== this.dataService.currentWord) {
+      this.currentWord = this.dataService.currentWord;
+      this.getCurrentWordDefinition();
+      this.cd.detectChanges();
+    }
   }
 
   getCurrentWordDefinition() {
     this.dataService
       .fetchData(this.currentWord)
-      .subscribe((definition: Definition[]) => {
+      ?.subscribe((definition: Definition[]) => {
         this.currentDefinition = definition;
-        this.currentDefinition[0].phonetics.forEach((phonetic) =>
-          this.phonetics.push(phonetic.audio)
-        );
       });
   }
 
   playAudio() {
-    if (this.phonetics.length > 0) {
-      this.phonetics.forEach((sound) => {
-        let audio = new Audio(sound);
-        audio.play();
-      });
-    }
+    console.log(this.currentDefinition[0].phonetics);
+
+    this.currentDefinition[0].phonetics.forEach((sound) => {
+      if (sound.audio !== '') {
+        this.phonetics.push(sound.audio);
+      }
+      let audio = new Audio(this.phonetics[0]);
+
+      audio.play();
+    });
+    this.phonetics = [];
   }
 }

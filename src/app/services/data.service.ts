@@ -8,11 +8,15 @@ import Definition from '../interfaces/definition-interface';
 export class DataService {
   constructor(private http: HttpClient) {}
 
+  currentWord = 'keyboard';
   currentDefinition: Definition[] = [];
 
   fetchData(word: string) {
-    return this.http.get<Definition[]>(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-    );
+    if (word) {
+      return this.http.get<Definition[]>(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
+    }
+    return;
   }
 }
