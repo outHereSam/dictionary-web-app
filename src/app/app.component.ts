@@ -3,11 +3,17 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FontService } from './services/font.service';
+import { DefinitionComponent } from './components/definition/definition.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, SearchBarComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    SearchBarComponent,
+    DefinitionComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
 })
