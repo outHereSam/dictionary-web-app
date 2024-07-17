@@ -1,4 +1,6 @@
 <div class="definition-content">
+  @if (currentDefinition.length > 0) {
+
   <div class="title-head">
     <div>
       <h1 class="word">{{ currentDefinition[0]?.word }}</h1>
@@ -88,4 +90,7 @@
 
     }
   </div>
+  } @else {
+  <div class="loading">Loading...</div>
+  }
 </div>
