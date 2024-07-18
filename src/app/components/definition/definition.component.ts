@@ -19,6 +19,7 @@ export class DefinitionComponent {
   currentWord = '';
   currentDefinition: Definition[] = [];
   phonetics: string[] = [];
+  wordNotFound = false;
 
   ngOnInit() {
     this.getCurrentWordDefinition();
@@ -34,11 +35,17 @@ export class DefinitionComponent {
   }
 
   getCurrentWordDefinition() {
-    this.dataService
-      .fetchData(this.currentWord)
-      ?.subscribe((definition: Definition[]) => {
+    this.dataService.fetchData(this.currentWord)?.subscribe(
+      (definition: Definition[]) => {
+        this.wordNotFound = false;
         this.currentDefinition = definition;
-      });
+      },
+      (error) => {
+        if (error.status === 404) {
+          this.wordNotFound = true;
+        }
+      }
+    );
   }
 
   playAudio() {
@@ -51,5 +58,9 @@ export class DefinitionComponent {
       audio.play();
     });
     this.phonetics = [];
+  }
+
+  searchWord(event: any) {
+    console.log(event.target.innerText);
   }
 }

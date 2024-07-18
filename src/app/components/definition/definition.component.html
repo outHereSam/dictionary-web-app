@@ -1,5 +1,5 @@
 <div class="definition-content">
-  @if (currentDefinition[0]) {
+  @if (currentDefinition[0] && !wordNotFound) {
 
   <div class="title-head">
     <div>
@@ -50,7 +50,7 @@
       <div class="synonyms">
         <h5 class="subheading">Synonyms</h5>
         @for (syno of meaning.synonyms; track syno; let i = $index) {
-        <p class="syno">{{ syno }}</p>
+        <p class="syno" (click)="searchWord($event)">{{ syno }}</p>
         }
       </div>
 
@@ -58,7 +58,7 @@
       <div class="synonyms">
         <h5 class="subheading">Antonyms</h5>
         @for (anto of meaning.antonyms; track anto; let i = $index) {
-        <p class="syno">{{ anto }}</p>
+        <p class="syno" (click)="searchWord($event)">{{ anto }}</p>
         }
       </div>
       }
@@ -92,5 +92,15 @@
   </div>
   } @else {
   <!-- <div class="loading">Loading...</div> -->
-  }
+  <!-- Word not found -->
+  @if (wordNotFound) {
+  <div class="not-found">
+    <h1>😕</h1>
+    <h4>No Definitions Found</h4>
+    <p class="error-message">
+      Sorry pal, we couldn't find definitions for the word you were looking for.
+      You can try the search again at later time or head to the web instead.
+    </p>
+  </div>
+  } }
 </div>
