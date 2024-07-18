@@ -7,7 +7,7 @@
     placeholder="Search for any word..."
   /> -->
 
-  <form (submit)="setSearchWord()">
+  <form (submit)="setSearchWord()" autocomplete="off">
     <input
       name="searchWord"
       [(ngModel)]="searchWord"
