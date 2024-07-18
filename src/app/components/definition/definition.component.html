@@ -3,8 +3,8 @@
 
   <div class="title-head">
     <div>
-      <h1 class="word">{{ currentDefinition[0]?.word }}</h1>
-      <p class="phoenetic">{{ currentDefinition[0]?.phonetic }}</p>
+      <h1 class="word">{{ currentDefinition[0].word }}</h1>
+      <p class="phoenetic">{{ currentDefinition[0].phonetic }}</p>
     </div>
     <button class="play" (click)="playAudio()">
       <svg
@@ -22,7 +22,7 @@
   </div>
 
   <div class="meanings">
-    @for(meaning of currentDefinition[0]?.meanings; track
+    @for(meaning of currentDefinition[0].meanings; track
     currentDefinition[0]?.word) {
     <div class="meaning">
       <div class="headline">
@@ -68,7 +68,7 @@
 
   <div class="sources">
     <p>Source</p>
-    @for(source of currentDefinition[0]?.sourceUrls; track source; let i =
+    @for(source of currentDefinition[0].sourceUrls; track source; let i =
     $index) {
     <a [href]="source"
       >{{ source
