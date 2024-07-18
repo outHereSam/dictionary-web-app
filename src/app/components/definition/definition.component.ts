@@ -61,6 +61,6 @@ export class DefinitionComponent {
   }
 
   searchWord(event: any) {
-    console.log(event.target.innerText);
+    // console.log(event.target.innerText);
   }
 }

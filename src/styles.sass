@@ -35,6 +35,15 @@ body
         .line
             background-color: $line-light-mode
 
+        .sources
+            border-top: solid 1px $line-light-mode
+
+    .font-options
+        background-color: $text-white
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.10)
+
+
+
 body.dark-theme
     background-color: $bg-dark
 
@@ -54,3 +63,11 @@ body.dark-theme
     .moon
         path 
             stroke: $purple-accent
+
+    .sources
+            border-top: solid 1px $line-dark-mode
+
+    .font-options
+        background-color: $search-bg-dark
+        color: $text-white
+        box-shadow: 0 5px 30px 0 rgba(164, 69, 237, 100%)

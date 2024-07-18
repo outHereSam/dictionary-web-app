@@ -1,5 +1,98 @@
 <div class="definition-content">
-  @if (currentDefinition[0] && !wordNotFound) {
+  @if (currentDefinition.length > 0 && !wordNotFound) { @if
+  (currentDefinition.length > 1) { @for (definition of currentDefinition; track
+  definition; let i = $index) {
+  <div class="title-head">
+    <div>
+      <h1 class="word">
+        {{ definition.word }} <sup>{{ i + 1 }}</sup>
+      </h1>
+      <p class="phoenetic">{{ definition.phonetic }}</p>
+    </div>
+    <button class="play" (click)="playAudio()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="75"
+        height="75"
+        viewBox="0 0 75 75"
+      >
+        <g fill="#A445ED" fill-rule="evenodd">
+          <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+          <path d="M29 27v21l21-10.5z" />
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <div class="meanings">
+    @for(meaning of definition.meanings; track meaning) {
+    <div class="meaning">
+      <div class="headline">
+        <h4>{{ meaning.partOfSpeech }}</h4>
+        <span class="line"></span>
+      </div>
+
+      <h5 class="subheading">Meaning</h5>
+      <div class="definitions">
+        <ul>
+          @for(definition of meaning.definitions; track definition; let i =
+          $index) {
+          <li>{{ definition.definition }}</li>
+          }
+        </ul>
+
+        @for(definition of meaning.definitions; track definition; let i =
+        $index) { @if (definition.example) {
+
+        <p class="example">"{{ definition.example }}"</p>
+        } }
+      </div>
+
+      @if (meaning.synonyms.length > 0) {
+      <div class="synonyms">
+        <h5 class="subheading">Synonyms</h5>
+        @for (syno of meaning.synonyms; track syno; let i = $index) {
+        <p class="syno" (click)="searchWord($event)">{{ syno }}</p>
+        }
+      </div>
+
+      } @if (meaning.antonyms.length > 0) {
+      <div class="synonyms">
+        <h5 class="subheading">Antonyms</h5>
+        @for (anto of meaning.antonyms; track anto; let i = $index) {
+        <p class="syno" (click)="searchWord($event)">{{ anto }}</p>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="sources">
+    <p>Source</p>
+    @for(source of currentDefinition[0].sourceUrls; track source; let i =
+    $index) {
+    <a [href]="source"
+      >{{ source
+      }}<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+      >
+        <path
+          fill="none"
+          stroke="#838383"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+        /></svg
+    ></a>
+
+    }
+  </div>
+  } } @else {
 
   <div class="title-head">
     <div>
@@ -90,7 +183,7 @@
 
     }
   </div>
-  } @else {
+  } } @else {
   <!-- <div class="loading">Loading...</div> -->
   <!-- Word not found -->
   @if (wordNotFound) {

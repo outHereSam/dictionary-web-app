@@ -11,9 +11,20 @@
         .word
             margin: 0 0 8px 0
 
+            @media (min-width: 750px)
+                font-size: 64px
+
+            sup
+                font-size: 18px
+                color: $text-secondary
+
         .phoenetic
             font-size: 18px
             color: $purple-accent
+
+            @media (min-width: 750px)
+                font-size: 24px
+
         
         .play
             width: 48px
@@ -48,12 +59,19 @@
                 margin: 32px 0 17px 0
                 color: $text-secondary
 
+                @media (min-width: 750px)
+                    font-size: 20px
+
         .headline
             // border: solid 1px pink
             display: flex
             justify-content: space-between
             align-items: center
             gap: 16px
+
+            @media (min-width: 750px)
+                font-size: 24px
+
 
             h4 
                 font-size: 18px
@@ -72,6 +90,9 @@
                 line-height: 1.5
                 margin: 0 0 13px 0
                 list-style-position: inside
+
+                @media (min-width: 750px)
+                    font-size: 18px
 
                 &::marker
                     color: $purple-accent
@@ -103,8 +124,8 @@
             line-height: 1.5
 
     .sources
-        border-top: solid 1px $line-light-mode
         padding: 24px 0
+        margin:  0 0 30px 0
 
         p
             font-size: 14px

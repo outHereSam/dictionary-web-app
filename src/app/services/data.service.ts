@@ -8,7 +8,7 @@ import Definition from '../interfaces/definition-interface';
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  currentWord = 'keyboard';
+  currentWord = '';
   currentDefinition: Definition[] = [];
 
   fetchData(word: string) {
