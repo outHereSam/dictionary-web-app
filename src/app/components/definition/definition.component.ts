@@ -62,5 +62,7 @@ export class DefinitionComponent {
 
   searchWord(event: any) {
     // console.log(event.target.innerText);
+    this.currentWord = event.target.innerText;
+    this.getCurrentWordDefinition();
   }
 }
