@@ -23,3 +23,34 @@ $monospace-stack: "Inconsolata", monospace
     padding: 0
     box-sizing: border-box
 
+body
+    transition: 0.3s ease-in
+
+    input.word-search
+        background-color: $search-bg-light
+
+    main
+        color: $text-grey
+
+        .line
+            background-color: $line-light-mode
+
+body.dark-theme
+    background-color: $bg-dark
+
+    button, input
+        color: $text-white
+
+    input.word-search
+        border: solid 1px pink
+        background-color: $search-bg-dark
+
+    main
+        color: $text-white
+
+        .line
+            background-color: $line-dark-mode
+
+    .moon
+        path 
+            stroke: $purple-accent

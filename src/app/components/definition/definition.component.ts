@@ -42,8 +42,6 @@ export class DefinitionComponent {
   }
 
   playAudio() {
-    console.log(this.currentDefinition[0].phonetics);
-
     this.currentDefinition[0].phonetics.forEach((sound) => {
       if (sound.audio !== '') {
         this.phonetics.push(sound.audio);

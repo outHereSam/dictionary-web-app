@@ -1,9 +1,14 @@
 <div class="theme-toggle">
   <label class="switch">
-    <input type="checkbox" />
+    <input
+      type="checkbox"
+      (change)="toggleTheme()"
+      [checked]="themeService.isDarkTheme() ? 'checked' : ''"
+    />
     <span class="slider"></span>
   </label>
   <svg
+    class="moon"
     xmlns="http://www.w3.org/2000/svg"
     width="22"
     height="22"

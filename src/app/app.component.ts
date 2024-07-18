@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FontService } from './services/font.service';
 import { DefinitionComponent } from './components/definition/definition.component';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { DefinitionComponent } from './components/definition/definition.componen
 })
 export class AppComponent {
   fontService = inject(FontService);
+  themeService = inject(ThemeService);
   title = 'dictionary-web-app';
   fontFamily = this.fontService.currentFont;
 
