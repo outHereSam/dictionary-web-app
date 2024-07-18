@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FontService } from './services/font.service';
+import { ThemeService } from './services/theme.service';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { FontService } from './services/font.service';
 import { DefinitionComponent } from './components/definition/definition.component';
-import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',

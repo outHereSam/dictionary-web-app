@@ -1,7 +1,31 @@
 <div class="definition-content">
-  @if (currentDefinition.length > 0 && !wordNotFound) { @if
-  (currentDefinition.length > 1) { @for (definition of currentDefinition; track
-  definition; let i = $index) {
+  @if (loading) {
+  <div class="loading">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
+      <path
+        fill="none"
+        stroke="#A445ED"
+        stroke-width="15"
+        stroke-linecap="round"
+        stroke-dasharray="300 385"
+        stroke-dashoffset="0"
+        d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          calcMode="spline"
+          dur="2"
+          values="685;-685"
+          keySplines="0 0 1 1"
+          repeatCount="indefinite"
+        ></animate>
+      </path>
+    </svg>
+    Loading...
+  </div>
+  } @if (currentDefinition.length > 0 && !wordNotFound && loading === false) {
+  @if (currentDefinition.length > 1) { @for (definition of currentDefinition;
+  track definition; let i = $index) {
   <div class="title-head">
     <div>
       <h1 class="word">
@@ -184,7 +208,6 @@
     }
   </div>
   } } @else {
-  <!-- <div class="loading">Loading...</div> -->
   <!-- Word not found -->
   @if (wordNotFound) {
   <div class="not-found">

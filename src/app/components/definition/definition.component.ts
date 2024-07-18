@@ -20,10 +20,12 @@ export class DefinitionComponent {
   currentDefinition: Definition[] = [];
   phonetics: string[] = [];
   wordNotFound = false;
+  loading = false;
 
   ngOnInit() {
     this.getCurrentWordDefinition();
     this.currentWord = this.dataService.currentWord;
+    this.loading = false;
   }
 
   ngDoCheck() {
@@ -35,10 +37,12 @@ export class DefinitionComponent {
   }
 
   getCurrentWordDefinition() {
+    this.loading = true;
     this.dataService.fetchData(this.currentWord)?.subscribe(
       (definition: Definition[]) => {
         this.wordNotFound = false;
         this.currentDefinition = definition;
+        this.loading = false;
       },
       (error) => {
         if (error.status === 404) {
