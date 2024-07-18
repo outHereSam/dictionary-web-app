@@ -18,6 +18,7 @@ export class SearchBarComponent {
   ) {}
   fontFamily = this.fontService.currentFont;
   searchWord = '';
+  isEmpty: boolean = false;
 
   ngOnInit() {
     this.fontFamily = this.fontService.currentFont;
@@ -32,8 +33,11 @@ export class SearchBarComponent {
 
   setSearchWord() {
     if (this.searchWord) {
+      this.isEmpty = false;
       this.dataService.currentWord = this.searchWord;
       this.dataService.fetchData(this.searchWord);
+    } else {
+      this.isEmpty = true;
     }
   }
 }

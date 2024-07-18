@@ -15,6 +15,7 @@
       type="text"
       class="word-search"
       placeholder="Search for any word..."
+      [style]="{ border: isEmpty ? '1px solid #FF5252' : '' }"
     />
   </form>
   <button class="search" (click)="setSearchWord()">
@@ -34,4 +35,7 @@
       />
     </svg>
   </button>
+  <span class="error" [style]="{ display: isEmpty ? 'block' : 'none' }"
+    >Whoops, can’t be empty…</span
+  >
 </div>
